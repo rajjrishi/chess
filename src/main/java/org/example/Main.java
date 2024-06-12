@@ -54,14 +54,13 @@ public class Main {
             t--;
         }
 
-        chessBoard.printBoard();
-
         int tt = scanner.nextInt();
         scanner.nextLine();
         while (tt>0){
+            chessBoard.printBoard();
             String move = scanner.nextLine();
             int initialPos = Integer.parseInt(String.valueOf(move.charAt(1)));
-            int finalPos = Integer.parseInt(String.valueOf(move.charAt(3)));
+            int finalPos = Integer.parseInt(String.valueOf(move.charAt(4)));
             if(initialPos<0 || initialPos>7 || finalPos<0 || finalPos>7 || move.charAt(0)<'a' || move.charAt(0)>'h'
             || move.charAt(3)<'a' || move.charAt(3)>'h'){
                 System.out.println("Invalid move. Please enter valid move");
@@ -77,10 +76,12 @@ public class Main {
                         }else{
                             piece.setCurrentPosition(piece1.getCurrentPosition());
                             chessBoard.positions[Integer.parseInt(String.valueOf(move.charAt(4)))-1][(int) move.charAt(3) -97] = piece;
+                            chessBoard.positions[Integer.parseInt(String.valueOf(move.charAt(1)))-1][(int) move.charAt(0) -97] = null;
                         }
                     }else{
                         piece.setCurrentPosition(move.substring(3,4));
                         chessBoard.positions[Integer.parseInt(String.valueOf(move.charAt(4)))-1][(int) move.charAt(3) -97] = piece;
+                        chessBoard.positions[Integer.parseInt(String.valueOf(move.charAt(1)))-1][(int) move.charAt(0) -97] = null;
                     }
                 }else{
                     System.out.println("Invalid move. Please enter valid move");
@@ -89,5 +90,7 @@ public class Main {
             }
             tt--;
         }
+        chessBoard.printBoard();
+
     }
 }
